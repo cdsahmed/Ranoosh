@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Ranoosh 🌷</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #ffe4ec, #fff);
+      overflow-x: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .tulip {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: pink;
+      border-radius: 50% 50% 0 0;
+      transform: rotate(45deg);
+      animation: float 8s linear infinite;
+      cursor: pointer;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    .fade-in {
+      animation: fadeIn 2s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .bounce {
+      animation: bounce 1s infinite alternate;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen text-center px-6">
+
+  <!-- Music -->
+  <iframe style="display:none" src="https://www.youtube.com/embed/BO1n7gY4wC4?autoplay=1&loop=1&playlist=BO1n7gY4wC4"></iframe>
+
+  <!-- Title -->
+  <h1 class="text-4xl md:text-6xl font-bold text-pink-600 mb-6 fade-in">Hey Ranoosh 🌷</h1>
+
+  <!-- Tulip Image -->
+  <img src="https://images.unsplash.com/photo-1524594227088-9f3c2e2a9b1d" 
+       class="w-64 rounded-2xl shadow-lg mb-6 fade-in" />
+
+  <!-- Message -->
+  <p id="typingText" class="text-lg md:text-2xl text-gray-700 max-w-xl leading-relaxed"></p>
+
+  <!-- Button -->
+  <button onclick="showMessage()" class="mt-8 bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-2xl shadow-lg transition bounce">
+    Open your message 💌
+  </button>
+
+  <!-- Hidden Message -->
+  <div id="hiddenMessage" class="hidden mt-8 text-xl text-pink-700 max-w-lg fade-in">
+    I'm really proud of you, Ranoosh.<br/><br/>
+    You handle so much, and you still keep going.
+    You are strong in ways you don't even realize yet.<br/><br/>
+    And honestly...
+    I would risk it all for you ❤️
+  </div>
+
+  <!-- Bouquet Section -->
+  <div class="mt-10">
+    <h2 class="text-2xl text-pink-500 mb-4">A bouquet just for you 🌷</h2>
+    <div class="flex gap-4 justify-center flex-wrap">
+      <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946" class="w-32 rounded-xl shadow" />
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6" class="w-32 rounded-xl shadow" />
+      <img src="https://images.unsplash.com/photo-1468327768560-75b778cbb551" class="w-32 rounded-xl shadow" />
+    </div>
+  </div>
+
+  <script>
+    // Typing effect
+    const text = `I just want you to know something important...\n\nYou are doing better than you think.\nEven on the days you feel tired... you're still moving forward.\n\nAnd that takes strength 🌷`;
+    let i = 0;
+
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("typingText").innerHTML += text.charAt(i) === '\n' ? '<br/>' : text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 40);
+      }
+    }
+    typeWriter();
+
+    function showMessage() {
+      document.getElementById('hiddenMessage').classList.remove('hidden');
+    }
+
+    // Floating tulips
+    function createTulip() {
+      const tulip = document.createElement('div');
+      tulip.classList.add('tulip');
+      tulip.style.left = Math.random() * 100 + 'vw';
+      tulip.style.animationDuration = (5 + Math.random() * 5) + 's';
+
+      // Click interaction
+      tulip.onclick = () => {
+        tulip.innerHTML = '💖';
+        tulip.style.background = 'transparent';
+      };
+
+      document.body.appendChild(tulip);
+
+      setTimeout(() => {
+        tulip.remove();
+      }, 10000);
+    }
+
+    setInterval(createTulip, 250);
+  </script>
+
+</body>
+</html>
